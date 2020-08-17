@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+    ds: 
+        image: data-science-ml-mastery:latest
+        build: .
+        volumes:
+            - ./:/app
+        working_dir: /app
+        ports:
+            - "8888:8888"
+        environment:
+            PASSWORD: "abc123"
+            JUPYTER_ENABLE_LAB: 'yes'
+            JUPYTER_CONFIG_DIR: /app
