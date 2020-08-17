@@ -3,7 +3,7 @@ FROM jupyter/scipy-notebook:latest
 ARG conda_env=python38
 ARG py_ver=3.8
 
-RUN mkdir /opt/conda/pkgs && chown -R 1000:100 /opt/conda/pkgs
+RUN mkdir /opt/conda/pkgs && chown -R jovyan /opt/conda/pkgs
 
 # you can add additional libraries you want conda to install by listing them below the first line and ending with "&& \"
 RUN conda create --quiet --yes -p \
@@ -16,10 +16,23 @@ RUN $CONDA_DIR/envs/${conda_env}/bin/python -m \
     && fix-permissions $CONDA_DIR \
     && fix-permissions /home/$NB_USER
 
-# Install additional requirements
+# Install gcc required for python dep xgboost
 RUN conda install -y libgcc-ng
-COPY requirements.txt /tmp/
-RUN $CONDA_DIR/envs/${conda_env}/bin/pip install -r /tmp/requirements.txt
+
+# Set working directory
+WORKDIR /app
+
+# Install additional requirements
+COPY setup.py README.md requirements.txt ./
+COPY src/ ./src/
+
+# Note: building the -e egg-info required root. I couldn't figure out how to
+#   get it to write the egg-info file to another location. 
+USER root
+RUN $CONDA_DIR/envs/${conda_env}/bin/pip install \
+    --no-cache-dir \
+    -r requirements.txt
+USER jovyan
 
 # prepend conda environment to path
 ENV PATH $CONDA_DIR/envs/${conda_env}/bin:$PATH

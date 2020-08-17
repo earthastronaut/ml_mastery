@@ -1,6 +1,6 @@
 # In addition to defaults from docker image
 
-# -e .
+-e .
 
 # Machine Learning
 xgboost
