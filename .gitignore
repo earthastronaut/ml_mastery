@@ -39,7 +39,8 @@ coverage.xml
 
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
-/lab/
+lab/
+resources/lab
 
 # vim
 *.swp

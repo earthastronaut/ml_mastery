@@ -6,4 +6,4 @@
 xgboost
 
 # Data Science
-git+https://github.com/earthastronaut/data_science_tools@master#egg=data_science_tools
+git+https://github.com/earthastronaut/data_science_tools.git@master#egg=data_science_tools
