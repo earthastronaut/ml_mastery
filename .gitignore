@@ -41,6 +41,7 @@ coverage.xml
 .ipynb_checkpoints/
 lab/
 resources/lab
+resources/migrated 
 
 # vim
 *.swp
