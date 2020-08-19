@@ -1,6 +1,7 @@
 # In addition to defaults from docker image
 
--e .
+# -e .
+# Using PYTHONPATH to access "src" module instead of setup.py install because of permissions.
 
 # Machine Learning
 xgboost
