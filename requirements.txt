@@ -6,5 +6,8 @@
 # Machine Learning
 xgboost
 
+# Model Selection
+mlxtend
+
 # Data Science
 git+https://github.com/earthastronaut/data_science_tools.git@master#egg=data_science_tools
